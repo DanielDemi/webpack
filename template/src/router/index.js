@@ -50,7 +50,7 @@ router.beforeEach((to, form, next) => {
     return
   }
 
-  const locale = Vue.prototype.getCookie('i18n') || 'zh_CN'                 // 获取当前语言类型
+  const locale = Vue.prototype.$utils.getCookie('i18n') || 'zh_CN'                 // 获取当前语言类型
   let lang = require(`@/i18n/${locale}/index`)
   i18n.setLocaleMessage(locale, JSON.parse(JSON.stringify(lang)))
   huiLocale.i18n((key, value) => i18n.t(key, value))        // hui的多语言

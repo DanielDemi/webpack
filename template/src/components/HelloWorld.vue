@@ -1,12 +1,22 @@
 <template>
   <div class="hello">
-    <h1>{{ $t('hello.hello') }}</h1>
+    <h1>{{msg}}</h1>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'HelloWorld'
+    name: 'HelloWorld',
+    data () {
+      return {
+        msg: ''
+      }
+    },
+    watch: {
+      '$i18n.locale' () {
+        this.msg = this.$t('hello.hello')
+      }
+    }
   }
 </script>
 

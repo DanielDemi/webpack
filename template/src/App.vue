@@ -20,7 +20,6 @@ export default {
   name: 'app',
   methods: {
     switchLang (locale) {
-      debugger
       let lang = require(`@/i18n/${locale}`)
       this.$i18n.setLocaleMessage(locale, JSON.parse(JSON.stringify(lang)))
       console.log(this.$i18n)
