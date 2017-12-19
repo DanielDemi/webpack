@@ -8,6 +8,7 @@ import App from './App'
 {{#router}}
 import router from './router'
 {{/router}}
+import i18n from './i18n'
 
 import hui from 'hui'
 import eid from 'everyone_is_designer'
@@ -25,6 +26,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  i18n,
   {{#router}}
   router,
   {{/router}}

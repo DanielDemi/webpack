@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from '../router.config.json'
-import { Loading } from 'hui'
 import _ from 'lodash'
 import i18n from '@/i18n'
-import { getCookie } from '@/utils/cookie'
 import huiLocale from 'hui/lib/locale'
-
+import common from 'dolphin_common'
+Vue.use(common)
 Vue.use(Router)
 
 /**
@@ -18,7 +17,7 @@ const createRoute = (routes) => {
   return routes.reduce((processedRoutes, currentRoute) => {
     processedRoutes.push(processRouteObj(_.omit(currentRoute, 'breadcrumb')))
     return processedRoutes
-  }, [ocxRoute])
+  }, [])
 }
 
 const processRouteObj = ({name, path, component}) => ({
@@ -51,8 +50,8 @@ router.beforeEach((to, form, next) => {
     return
   }
 
-  const locale = getCookie('i18n') || 'zh_CN'                 // 获取当前语言类型
-  let lang = require(`@/i18n/dev/${locale}/index`)
+  const locale = Vue.prototype.getCookie('i18n') || 'zh_CN'                 // 获取当前语言类型
+  let lang = require(`@/i18n/${locale}/index`)
   i18n.setLocaleMessage(locale, JSON.parse(JSON.stringify(lang)))
   huiLocale.i18n((key, value) => i18n.t(key, value))        // hui的多语言
   i18n.locale = locale

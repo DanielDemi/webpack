@@ -24,16 +24,7 @@ http.interceptors.response.use(function (response) {
     })
     return Promise.reject(response.data.code)
   }
-  // 根据响应数据判断是否登录过期
-  if (response.data.success === false && response.data.errorCode === 'pleaseRefreshByHeader') {
-    let refreshUrl = response.headers['refresh-url'].split('?')[0]
-    refreshUrl = refreshUrl + '?service=' + location.protocol + '//' + location.host + '/vss/ui/redirect' + location.pathname + encodeURIComponent(location.search)
-    location.href = refreshUrl
-  }
-  return Promise.resolve({
-    msg: response.data.msg,
-    data: response.data.data
-  })
+  return response
 }, function (error) {
   // 对响应错误做点什么
   return Promise.reject(error)

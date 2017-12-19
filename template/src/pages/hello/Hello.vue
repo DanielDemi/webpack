@@ -14,10 +14,8 @@
     components: {
       HelloWord
     },
-    data() {
+    data () {
       return {}
     }
   }
 </script>
-<style lang="less">
-</style>
