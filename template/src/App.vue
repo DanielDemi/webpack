@@ -1,18 +1,19 @@
 <template>
-  <div id="app">
-    <el-menu theme="dark" :router="true" :default-active="$route.path" mode="horizontal">
-      <el-menu-item index="/">首页</el-menu-item>
-      <el-menu-item index="hello">Hello</el-menu-item>
-    </el-menu>
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+  <page :menu="menu">
+    <transition name="page-transition">
+        <router-view></router-view>
+    </transition>
+  </page>
 </template>
 
 <script>
+import navList from './nav.config.json'
 export default {
   name: 'app',
-  methods: {
+  data () {
+    return {
+      menu: navList
+    }
   }
 }
 </script>

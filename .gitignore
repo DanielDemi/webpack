@@ -1,8 +1,7 @@
 node_modules
 .DS_Store
 docs/_book
-test/
-test1/
+test*
 node_modules
 .DS_Store
 docs/_book

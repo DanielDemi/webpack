@@ -1,5 +1,7 @@
 <template>
-  <hello-word></hello-word>
+  <page-container>
+    <hello-word></hello-word>
+  </page-container>
 </template>
 <script>
   /**
@@ -8,7 +10,7 @@
    * @desc
    */
   import HelloWord from '../../components/HelloWorld.vue'
-
+  import helloApi from '../../api/api.hello'
   export default {
     name: 'Hello',
     components: {
@@ -16,6 +18,9 @@
     },
     data () {
       return {}
+    },
+    created () {
+      helloApi.getConfig()
     }
   }
 </script>

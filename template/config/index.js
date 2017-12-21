@@ -4,16 +4,18 @@
 
 const path = require('path')
 
+const basePath = '/hello/'
+const apiPrefix = '/hello/ui'
+
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      [this.apiPrefix]: {
-        target: 'http://127.0.0.1',
-        changeOrigin: true 
+      [apiPrefix]: {
+        target: 'http://127.0.0.1:8080',
+        changeOrigin: true
       }
     },
 
@@ -25,14 +27,13 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    {{#lint}}// Use Eslint Loader?
+    // Use Eslint Loader?
     // If true, your code will be linted during bundling and
     // linting errors and warnings will be shown in the console.
     useEslint: true,
     // If true, eslint errors and warnings will also be shown in the error overlay
     // in the browser.
     showEslintErrorsInOverlay: false,
-    {{/lint}}
 
     /**
      * Source Maps
@@ -51,7 +52,7 @@ module.exports = {
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
-    cssSourceMap: false,
+    cssSourceMap: false
   },
 
   build: {
@@ -61,7 +62,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: this.basePath,
+    assetsPublicPath: basePath,
 
     /**
      * Source Maps
@@ -85,7 +86,7 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
 
-  basePath: '/hello/',
+  basePath: basePath,
 
-  apiPrefix: '/hello/api'
+  apiPrefix: apiPrefix
 }
