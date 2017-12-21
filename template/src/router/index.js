@@ -32,11 +32,10 @@ const router = new Router({
 })
 
 /**
- * @author: xuzilong
- * @date: 2017-12-14 18:40:18
- * @desc:  阻塞等待语言包加载完毕之后再进入路由
+ * @description:  阻塞等待语言包加载完毕之后再进入路由
+ * @author:       zhuxiankang
+ * @time:         2017/11/28
  */
-
 router.beforeEach((to, form, next) => {
   let messages = i18n.messages
   let isLoadLanguage                                          // 是否已经加载语言包
@@ -50,12 +49,16 @@ router.beforeEach((to, form, next) => {
     return
   }
 
-  const locale = Vue.prototype.$utils.getCookie('i18n') || 'zh_CN'                 // 获取当前语言类型
-  let lang = require(`@/i18n/${locale}/index`)
-  i18n.setLocaleMessage(locale, JSON.parse(JSON.stringify(lang)))
-  huiLocale.i18n((key, value) => i18n.t(key, value))        // hui的多语言
-  i18n.locale = locale
-  next()
+  if (process.env.NODE_ENV === 'development') {               // 开发态
+    let lang = require('@/i18n/zh_CN')
+    i18n.setLocaleMessage('zh_CN', JSON.parse(JSON.stringify(lang)))
+    huiLocale.i18n((key, value) => i18n.t(key, value))        // hui的多语言
+    i18n.locale = 'zh_CN'
+    next()
+  } else {                                                    // 部署态
+    // http请求语言包
+    // 注意next()应该在请求响应回调函数中处理
+  }
 })
 
 export default router
