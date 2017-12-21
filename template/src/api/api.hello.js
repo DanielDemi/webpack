@@ -2,6 +2,6 @@ import http from './index'
 
 export default {
   getConfig () {
-    return http.get('/api/requestUrl')
+    return http.get('/requestUrl')
   }
 }

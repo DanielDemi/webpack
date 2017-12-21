@@ -7,6 +7,7 @@
  */
 
 import axios from 'axios'
+import config from '../../config/index'
 import { Notification } from 'hui'
 
 const http = axios.create({
@@ -32,6 +33,7 @@ http.interceptors.response.use(function (response) {
 
 // 请求拦截器
 http.interceptors.request.use(function (config) {
+  config.url = `${config.apiPrefix + config.url}`
   return config
 }, function (error) {
   // 对请求错误做些什么

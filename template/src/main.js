@@ -11,15 +11,12 @@ import router from './router'
 import i18n from './i18n'
 
 import hui from 'hui'
-import eid from 'everyone_is_designer'
 import common from 'dolphin_common'
 import 'dolphin_common/lib/theme/reset.css'
 import 'hui/lib/theme-default/index.css'
-import 'everyone_is_designer/lib/theme/index.css'
 import 'dolphin_common/lib/theme/index.css'
 
 Vue.use(hui)
-Vue.use(eid)
 Vue.use(common)
 Vue.config.productionTip = false
 

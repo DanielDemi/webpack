@@ -3,6 +3,6 @@
     "name": "hello",
     "path": "/hello/",
     "component": "hello/Hello",
-    "breadcrumb": []
+    "breadcrumb": ["首页", "欢迎"]
   }
 ]
