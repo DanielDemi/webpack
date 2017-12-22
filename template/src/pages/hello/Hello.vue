@@ -11,6 +11,7 @@
    */
   import HelloWord from '../../components/HelloWorld.vue'
   import helloApi from '../../api/api.hello'
+
   export default {
     name: 'Hello',
     components: {
