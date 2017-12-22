@@ -5,23 +5,16 @@
 </template>
 <script>
   /**
-   * @author zhangxin14
+   * @Author zhangxin14
    * @date 2017/12/18
-   * @desc
+   * @Desc
    */
   import HelloWord from '../../components/HelloWorld.vue'
-  import helloApi from '../../api/api.hello'
 
   export default {
     name: 'Hello',
     components: {
       HelloWord
-    },
-    data () {
-      return {}
-    },
-    created () {
-      helloApi.getConfig()
     }
   }
 </script>
