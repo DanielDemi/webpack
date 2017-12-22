@@ -1,0 +1,7 @@
+[
+  {
+    "name": "hello",
+    "path": "/hello/",
+    "component": "hello/Hello"
+  }
+]

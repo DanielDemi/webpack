@@ -1,34 +1,29 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    {{#router}}
-    <router-view/>
-    {{else}}
-    <HelloWorld/>
-    {{/router}}
-  </div>
+  <page :menu="menu">
+    <transition name="page-transition">
+        <router-view></router-view>
+    </transition>
+  </page>
 </template>
 
 <script>
-{{#unless router}}
-import HelloWorld from './components/HelloWorld'
-
-{{/unless}}
+import navList from './nav.config.json'
 export default {
-  name: 'app'{{#router}}{{else}},
-  components: {
-    HelloWorld
-  }{{/router}}
+  name: 'app',
+  data () {
+    return {
+      menu: navList
+    }
+  }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
