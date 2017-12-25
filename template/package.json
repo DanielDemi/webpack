@@ -32,7 +32,7 @@
     "vue-i18n": "^7.1.1",
     "axios": "^0.16.2",
     "dolphin_common": "git+https://zhangxin14@git.hikvision.com.cn/scm/dolphin/dolphin_common.git#v1.0.1",
-    "hui": "git+https://zhangxin14@git.hikvision.com.cn/scm/hik/hui.git#v1.1.4",
+    "hui": "git+https://zhangxin14@git.hikvision.com.cn/scm/hik/hui.git#v1.1.4"
   },
   "devDependencies": {
     {{#lint}}
