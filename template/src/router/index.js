@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from '../router.config.json'
-import _ from 'lodash'
 import i18n from '@/i18n'
 import huiLocale from 'hui/lib/locale'
 import common from 'dolphin_common'
@@ -15,14 +14,15 @@ Vue.use(Router)
  */
 const createRoute = (routes) => {
   return routes.reduce((processedRoutes, currentRoute) => {
-    processedRoutes.push(processRouteObj(_.omit(currentRoute, 'breadcrumb')))
+    processedRoutes.push(processRouteObj(currentRoute))
     return processedRoutes
   }, [])
 }
 
-const processRouteObj = ({name, path, component}) => ({
+const processRouteObj = ({name, path, component, breadcrumb}) => ({
   path: path,
   name: name,
+  props: {breadcrumb: breadcrumb},
   component: () => import(`@/pages/${component}`)
 })
 

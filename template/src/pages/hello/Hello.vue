@@ -1,5 +1,5 @@
 <template>
-  <page-container>
+  <page-container :breadcrumb="breadcrumb">
     <hello-word></hello-word>
   </page-container>
 </template>
@@ -10,18 +10,12 @@
    * @desc
    */
   import HelloWord from '../../components/HelloWorld.vue'
-  import helloApi from '../../api/api.hello'
 
   export default {
     name: 'Hello',
+    props: ['breadcrumb'],
     components: {
       HelloWord
-    },
-    data () {
-      return {}
-    },
-    created () {
-      helloApi.getConfig()
     }
   }
 </script>
