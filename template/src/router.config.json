@@ -2,6 +2,16 @@
   {
     "name": "hello",
     "path": "/hello/",
-    "component": "hello/Hello"
+    "component": "hello/Hello",
+    "breadcrumb": [
+      {
+        "title": "首页",
+        "router": "/"
+      },
+      {
+        "title": "欢迎",
+        "router": ""
+      }
+    ]
   }
 ]

@@ -1,18 +1,19 @@
 <template>
-  <page-container>
+  <page-container :breadcrumb="breadcrumb">
     <hello-word></hello-word>
   </page-container>
 </template>
 <script>
   /**
-   * @Author zhangxin14
+   * @author zhangxin14
    * @date 2017/12/18
-   * @Desc
+   * @desc
    */
   import HelloWord from '../../components/HelloWorld.vue'
 
   export default {
     name: 'Hello',
+    props: ['breadcrumb'],
     components: {
       HelloWord
     }
