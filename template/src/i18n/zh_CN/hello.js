@@ -1,3 +1,3 @@
 export default {
-  hello: '欢迎使用Vue.js App'
+  dolphin: '欢迎使用dolphin App'
 }
