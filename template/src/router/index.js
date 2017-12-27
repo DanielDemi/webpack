@@ -32,7 +32,6 @@ const processRouteObj = ({name, path, component, breadcrumb}) => ({
   component: () => import(`@/pages/${component}`)
 })
 
-
 const router = new Router({
   mode: 'history',
   routes: createRoute(routes)
