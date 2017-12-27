@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{\$t('hello.dolphin')}}</h1>
+    <h1>\{{$t('hello.dolphin')}}</h1>
 
      <h2>开发前请先阅读:</h2>
 
