@@ -19,12 +19,19 @@ const createRoute = (routes) => {
   }, [])
 }
 
+/** 
+ * @Desc: 处理面包屑 
+ * warn： 如果路由有多层嵌套需要对多层嵌套做额外的递归处理
+ * @Author: zhangxin14 
+ * @Date: 2017-12-27 14:35:27 
+ */
 const processRouteObj = ({name, path, component, breadcrumb}) => ({
   path: path,
   name: name,
   props: {breadcrumb: breadcrumb},
   component: () => import(`@/pages/${component}`)
 })
+
 
 const router = new Router({
   mode: 'history',

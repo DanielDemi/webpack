@@ -20,6 +20,17 @@ Vue.use(hui)
 Vue.use(common)
 Vue.config.productionTip = false
 
+// 全局混合，对面包屑的多语言进行处理
+Vue.mixin({
+  computed: {
+    i18nBreadcrumb () {
+      return this.breadcrumb ? this.breadcrumb.map(bd => ({
+        title: this.$t(bd.title),
+        router: bd.router
+      })) : null
+    }
+  }
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

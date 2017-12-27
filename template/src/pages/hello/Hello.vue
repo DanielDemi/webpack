@@ -1,5 +1,5 @@
 <template>
-  <page-container :breadcrumb="breadcrumb">
+  <page-container :breadcrumb="i18nBreadcrumb">
     <hello-word></hello-word>
   </page-container>
 </template>

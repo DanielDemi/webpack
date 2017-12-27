@@ -5,11 +5,11 @@
     "component": "hello/Hello",
     "breadcrumb": [
       {
-        "title": "首页",
+        "title": "hello.home",
         "router": "/"
       },
       {
-        "title": "欢迎",
+        "title": "hello.welcome",
         "router": ""
       }
     ]
