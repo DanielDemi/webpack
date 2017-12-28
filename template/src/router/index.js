@@ -62,8 +62,17 @@ router.beforeEach((to, form, next) => {
     i18n.locale = 'zh_CN'
     next()
   } else {                                                    // 部署态
-    // http请求语言包
+    // http请求语言包示例
     // 注意next()应该在请求响应回调函数中处理
+    
+    // i18n.setLanguage('/isfd/ui/current/userinfo', (res) => {
+    //   // 根据请求的语言包类型设置多语言
+    //   console.log(res)
+    // }, (err) => {
+    //   // 如果当前语言包请求失败，则默认请求并设置英文语言包  
+    //   console.log(err)
+    // })
+    next()
   }
 })
 
