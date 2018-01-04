@@ -1,15 +1,9 @@
 
 {
-  "default": "blue",
+  "default": "red",
   "skins": [{
-    "name": "blue",
-    "color": "#6085FF"
-  }, {
-    "name": "green",
-    "color": "#1ab465"
-  }, {
     "name": "red",
-    "color": "#cc2929"
+    "color": "#d7000f"
   }],
   "system": "",
   "packages": [{
@@ -19,6 +13,10 @@
   }, {
     "name": "dolphin_common",
     "version": "1.0.1",
+    "stylePath": "index.css"
+  }, {
+    "name": "aaa",
+    "version": "1.0.0",
     "stylePath": "index.css"
   }]
 }

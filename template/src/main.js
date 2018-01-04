@@ -12,9 +12,6 @@ import i18n from './i18n'
 
 import hui from 'hui'
 import common from 'dolphin_common'
-import 'dolphin_common/lib/theme/reset.css'
-import 'hui/lib/theme-default/index.css'
-import 'dolphin_common/lib/theme/index.css'
 
 Vue.use(hui)
 Vue.use(common)
