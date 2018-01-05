@@ -2,7 +2,7 @@
   <div class="page-card hello">
     <img class="logo-large" src="../assets/logo-large.png">
 
-    <h1>{{$t('hello.dolphin')}}</h1>
+    <h1>\{{$t('hello.dolphin')}}</h1>
 
     <h2 class="theme-test">开发前请先阅读:</h2>
 
