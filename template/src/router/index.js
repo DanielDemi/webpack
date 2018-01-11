@@ -3,15 +3,9 @@ import Router from 'vue-router'
 import routes from '../router.config.json'
 import i18n from '@/i18n'
 import huiLocale from 'hui/lib/locale'
-import common from 'dolphin_common'
-Vue.use(common)
+import http from '@/api/index'
 Vue.use(Router)
 
-/**
- * @desc: 组装路由
- * @date: 2017/11/10 9:28
- * @author: zhangxin14
- */
 const createRoute = (routes) => {
   return routes.reduce((processedRoutes, currentRoute) => {
     processedRoutes.push(processRouteObj(currentRoute))
@@ -19,16 +13,9 @@ const createRoute = (routes) => {
   }, [])
 }
 
-/** 
- * @Desc: 处理面包屑 
- * warn： 如果路由有多层嵌套需要对多层嵌套做额外的递归处理
- * @Author: zhangxin14 
- * @Date: 2017-12-27 14:35:27 
- */
-const processRouteObj = ({name, path, component, breadcrumb}) => ({
+const processRouteObj = ({name, path, component}) => ({
   path: path,
   name: name,
-  props: {breadcrumb: breadcrumb},
   component: () => import(`@/pages/${component}`)
 })
 
@@ -37,14 +24,10 @@ const router = new Router({
   routes: createRoute(routes)
 })
 
-/**
- * @description:  阻塞等待语言包加载完毕之后再进入路由
- * @author:       zhuxiankang
- * @time:         2017/11/28
- */
-router.beforeEach((to, form, next) => {
+router.beforeEach(async (to, form, next) => {
   let messages = i18n.messages
-  let isLoadLanguage                                          // 是否已经加载语言包
+  // 是否已经加载语言包
+  let isLoadLanguage                                          
 
   for (let key in messages) {
     isLoadLanguage = key
@@ -55,25 +38,38 @@ router.beforeEach((to, form, next) => {
     return
   }
 
-  if (process.env.NODE_ENV === 'development') {               // 开发态
-    let lang = require('@/i18n/zh_CN')
-    i18n.setLocaleMessage('zh_CN', JSON.parse(JSON.stringify(lang)))
-    huiLocale.i18n((key, value) => i18n.t(key, value))        // hui的多语言
-    i18n.locale = 'zh_CN'
+  // 开发态时，取本地的json文件
+  // 在调试多语言时，在HMR更新下，为了将多语言的`js`文件转化成`json`文件
+  // 建议将`webpack.dev.conf.js`中的`webpackShellPlugin`的`dev`选项设置为`false`
+  try {
+    // 请求与用户相关的多语言和皮肤包
+    // warn：这里的请求需要根据各自的组件写不同的请求 eg：
+    // let {data} = await http.get('/userInfo')
+    await setLanguage()
     next()
-  } else {                                                    // 部署态
-    // http请求语言包示例
-    // 注意next()应该在请求响应回调函数中处理
-    
-    // i18n.setLanguage('/isfd/ui/current/userinfo', (res) => {
-    //   // 根据请求的语言包类型设置多语言
-    //   console.log(res)
-    // }, (err) => {
-    //   // 如果当前语言包请求失败，则默认请求并设置英文语言包  
-    //   console.log(err)
-    // })
+  } catch (err) {
+    // 请求失败 默认使用中文包
+    await setLanguage('zh_CN')
+    console.error(err)
     next()
   }
 })
+
+const setLanguage = async (locale) => {
+  try {
+    // 请求静态文件中的语言包数据 eg:
+    let lang = await http.get(`${process.env.NODE_ENV !== 'development' ? configure.basePath : '' }/static/i18n/${locale}/index.json`)
+    // 解析语言包
+    i18n.setLocaleMessage(locale, JSON.parse(JSON.stringify(lang.data)))
+    // 设置hui组件的多语言
+    huiLocale.i18n((key, value) => i18n.t(key, value))        
+    // 设置当前语言
+    i18n.locale = locale
+  } catch(err) {
+    console.error(err)
+    // 请求语言包失败，请求默认的语言包
+    setLanguage('zh_CN')
+  }
+}
 
 export default router

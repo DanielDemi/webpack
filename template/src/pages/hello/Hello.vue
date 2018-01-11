@@ -1,5 +1,5 @@
 <template>
-  <page-container :breadcrumb="i18nBreadcrumb">
+  <page-container>
     <hello-word></hello-word>
   </page-container>
 </template>
@@ -13,7 +13,6 @@
 
   export default {
     name: 'Hello',
-    props: ['breadcrumb'],
     components: {
       HelloWord
     }

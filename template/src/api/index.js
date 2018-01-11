@@ -18,6 +18,10 @@ const http = axios.create({
 
 // 相应拦截器
 http.interceptors.response.use(function (response) {
+  // 请求多语言的json文件
+  if (response.config.url.indexOf('json') > -1) {
+    return response
+  }
   // 对错误进行统一处理
   if (response.data.code !== '0' && response.data.msg) {
     Notification.error({
@@ -33,7 +37,9 @@ http.interceptors.response.use(function (response) {
 
 // 请求拦截器
 http.interceptors.request.use(function (config) {
-  config.url = `${configure.apiPrefix + config.url}`
+  if (config.url.indexOf('json') < 0) {
+    config.url = `${configure.apiPrefix + config.url}`
+  }
   return config
 }, function (error) {
   // 对请求错误做些什么
