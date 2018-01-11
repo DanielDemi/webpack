@@ -4,6 +4,7 @@ import routes from '../router.config.json'
 import i18n from '@/i18n'
 import huiLocale from 'hui/lib/locale'
 import http from '@/api/index'
+import configure from '../../config/index'
 Vue.use(Router)
 
 const createRoute = (routes) => {
