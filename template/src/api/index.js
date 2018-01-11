@@ -8,7 +8,8 @@
 
 import axios from 'axios'
 import configure from '../../config/index'
-import { Notification } from 'hui'
+import i18n from '@/i18n'
+import { Message } from 'hui'
 
 const http = axios.create({
   timeout: 20000,
@@ -24,9 +25,7 @@ http.interceptors.response.use(function (response) {
   }
   // 对错误进行统一处理
   if (response.data.code !== '0' && response.data.msg) {
-    Notification.error({
-      message: response.data.msg
-    })
+    Message.error(i18n.t(response.data.msg))
     return Promise.reject(response.data.code)
   }
   return response
