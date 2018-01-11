@@ -43,11 +43,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       'process.env': require('../config/dev.env')
     }),
     // https://github.com/1337programming/webpack-shell-plugin
-    // 原插件有个bug，在dev设置为false之后，无法生效
-    // 需要手动修改node_modules/webpack-shell-plugin/index.js 中的判断条件
-    //  if (options.dev === 'undefined') {
-    //    options.dev = defaultOptions.dev;
-    //  }
+    // 调试多语言时，将dev设置true
     new WebpackShellPlugin({
       onBuildStart:['npm run i18n:jstojson'],
       dev: true
