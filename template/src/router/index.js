@@ -14,11 +14,11 @@ const createRoute = (routes) => {
   }, [])
 }
 
-const processRouteObj = ({name, path, component}) => ({
-  path: path,
-  name: name,
-  component: () => import(`@/pages/${component}`)
-})
+const processRouteObj = ({component, ...args}) => {
+  return Object.assign({
+    component: () => import(`@/pages/${component}`)
+  }, args)
+}
 
 const router = new Router({
   mode: 'history',
