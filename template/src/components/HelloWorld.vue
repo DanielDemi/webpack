@@ -6,7 +6,7 @@
 
     <h2 class="theme-test">开发前请先阅读:</h2>
 
-    <p><h1><a href="https://git.hikvision.com.cn/users/xiangxiao3/repos/blog/browse/2017/%E6%B5%B7%E8%B1%9Aweb%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md">海豚web前端开发规范</a></h1></p>
+    <p><h1><a href="https://wiki.hikvision.com.cn/pages/viewpage.action?pageId=46821263">海豚web前端开发指南</a></h1></p>
   </div>  
 </template>
 
