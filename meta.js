@@ -80,6 +80,10 @@ module.exports = {
         },
       ],
     },
+    dolphin: {
+      type: 'confirm',
+      message: 'Use dolphin_common to your code?',
+    },
     unit: {
       type: 'confirm',
       message: 'Set up unit tests',
