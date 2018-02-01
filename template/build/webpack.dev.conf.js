@@ -7,6 +7,7 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -40,6 +41,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
+    }),
+    // https://github.com/1337programming/webpack-shell-plugin
+    // 原插件有个bug，在dev设置为false之后，无法生效
+    // 需要手动修改node_modules/webpack-shell-plugin/index.js 中的判断条件
+    //  if (options.dev === 'undefined') {
+    //    options.dev = defaultOptions.dev;
+    //  }
+    new WebpackShellPlugin({
+      onBuildStart:['npm run i18n:jstojson'],
+      dev: true
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.

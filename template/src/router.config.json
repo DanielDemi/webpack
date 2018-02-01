@@ -2,16 +2,6 @@
   {
     "name": "hello",
     "path": "/hello/",
-    "component": "hello/Hello",
-    "breadcrumb": [
-      {
-        "title": "hello.home",
-        "router": "/"
-      },
-      {
-        "title": "hello.welcome",
-        "router": ""
-      }
-    ]
+    "component": "hello/Hello"
   }
 ]
