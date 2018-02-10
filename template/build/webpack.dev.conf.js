@@ -43,9 +43,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       'process.env': require('../config/dev.env')
     }),
     // https://github.com/1337programming/webpack-shell-plugin
-    // 调试多语言时，将dev设置true
+    // 调试多语言时，将dev设置fasle
     new WebpackShellPlugin({
-      onBuildStart:['npm run i18n:jstojson'],
+      onBuildEnd:['babel-node build/i18n-tools.js --presets es2015,stage-2'],
       dev: true
     }),
     new webpack.HotModuleReplacementPlugin(),

@@ -3,8 +3,7 @@ import Router from 'vue-router'
 import routes from '../router.config.json'
 import i18n from '@/i18n'
 import huiLocale from 'hui/lib/locale'
-import http from '@/api/index'
-import configure from '../../config/index'
+import { http } from '@/api/util'
 Vue.use(Router)
 
 const createRoute = (routes) => {
@@ -59,7 +58,7 @@ router.beforeEach(async (to, form, next) => {
 const setLanguage = async (locale) => {
   try {
     // 请求静态文件中的语言包数据 eg:
-    let lang = await http.get(`${process.env.NODE_ENV !== 'development' ? configure.basePath : '' }/static/i18n/${locale}/index.json`)
+    let lang = await http.get(`${process.env.NODE_ENV !== 'development' ? '/hello/' : '' }/static/i18n/${locale}/index.json`)
     // 解析语言包
     i18n.setLocaleMessage(locale, JSON.parse(JSON.stringify(lang.data)))
     // 设置hui组件的多语言

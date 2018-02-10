@@ -4,20 +4,17 @@
 
 const path = require('path')
 
-const basePath = '/hello/'
-const apiPrefix = '/hello/ui'
-
 module.exports = {
   dev: {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      [apiPrefix]: {
-        target: 'http://127.0.0.1:8080',
-        changeOrigin: true
-      }
-    },
+    
+    proxyTable: [{
+      context: ['/hello/**', '!/mock/**'],
+      target: 'http://127.0.0.1',
+      changeOrigin: true
+    }],
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -62,7 +59,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: basePath,
+    assetsPublicPath: '/hello/',
 
     /**
      * Source Maps
@@ -84,9 +81,5 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
-  },
-
-  basePath: basePath,
-
-  apiPrefix: apiPrefix
+  }
 }
